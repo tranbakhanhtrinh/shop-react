@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
+import Input from '../../../components/UI/Input/Input';
+import Button from '../../../components/UI/Button/Button';
 import classes from './Login.module.scss';
 
 
@@ -13,7 +13,6 @@ class Login extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
-                    placeholder: 'Your email'
                 },
                 value: '',
                 validation: {
@@ -27,7 +26,6 @@ class Login extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Password'
                 },
                 value: '',
                 validation: {
@@ -58,9 +56,6 @@ class Login extends Component {
         let form = formElementsArray.map(formElement => (
             <Input key={formElement.id}
                 label={formElement.config.label}
-                invalid={!formElement.config.valid}
-                touched={formElement.config.touched}
-                shouldValidate={formElement.config.validation}
                 changed={(event) => this.inputChangedHandler(event, formElement.id)}
                 elementType={formElement.config.elementType}
                 elementConfig={formElement.config.elementConfig}
@@ -69,12 +64,15 @@ class Login extends Component {
 
         return (
             <div className={classes.Login}>
-
                 <form className={classes.Form}>
                     <h3>Login</h3>
                     {form}
-                    <Button btnType="primary">Login</Button>
+                    <div className={classes.FormButton}>
+                        <div className={classes.FormBgBtn}></div>
+                        <Button btnType="Login">Login</Button>
+                    </div>
                 </form>
+
             </div>
         )
     }

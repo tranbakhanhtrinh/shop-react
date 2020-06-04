@@ -1,14 +1,14 @@
 import React from 'react';
-
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-
 import NavigationItem from './NavigationItem/NavigationItem';
+
+import classes from './Navbar.module.scss';
 
 const navBar = () => {
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" expand="lg" className={classes.NavPos}>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
@@ -16,8 +16,7 @@ const navBar = () => {
                     <NavigationItem link="/cms">CMS</NavigationItem>
                 </Nav>
                 <Nav className="ml-auto">
-                    <NavigationItem link="/login" exact>Log in</NavigationItem>
-                    <NavigationItem link="/signup">Sign up</NavigationItem>
+                    <NavigationItem link="/login" exact>Log out</NavigationItem>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

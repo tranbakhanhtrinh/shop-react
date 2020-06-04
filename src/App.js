@@ -2,19 +2,18 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Navbar from './components/Navbar/Navbar';
-import Login from './containers/Login/Login';
+import CMS from './containers/Admin/CMS/CMS';
 
 import './App.css';
 
 const app = () => {
     return (
         <div className="App">
-            <Login />
-            {/* <Switch>
+            <Navbar />
+            <Switch>
                 <Route path="/" exact render={() => <h1>Dashboard</h1>} />
-                <Route path="/cms" render={() => <h1>CMS</h1>} />
-                <Route path="/login" component={Login} />
-            </Switch> */}
+                <Route path="/cms" component={CMS} />
+            </Switch>
         </div>
     );
 }

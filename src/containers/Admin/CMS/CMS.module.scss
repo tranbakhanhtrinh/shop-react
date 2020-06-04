@@ -1,0 +1,22 @@
+.CMS {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-top: 56px;
+
+    .LeftMenuBar {
+        background-color: red;
+        width: 250px;
+        position: sticky;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+    .Body {
+        background-color: green;
+        height: 300px;
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+}
