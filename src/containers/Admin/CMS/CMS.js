@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import * as actionType from '../../../store/actions/home';
 
@@ -9,7 +10,7 @@ class CMS extends Component {
 
     componentDidMount() {
         this.props.onFetchHome();
-        // console.log(this.props)
+        axios.get('https://shop-react-f7aae.firebaseio.com/db.json').then(res => console.log(res))
     }
 
     render() {
@@ -19,24 +20,15 @@ class CMS extends Component {
             ha: { ...this.props.hinhanh }
         }
         const img = Object.values({ ...ha.img });
-        console.log(ha.des);
-        // const hinh = img.map((i, index) => {
-        //     return (
-        //         <div key={index}>
-        //             {i}
-        //         </div>
-        //     )
-        // })
-        // console.log(hinh);
+        // console.log(img)
 
         return (
             <div className={classes.CMS}>
                 <div className={classes.LeftMenuBar}>
-                    {gv.des}
+
                 </div>
                 <div className={classes.Body}>
-                    {hd.des} <br />
-                    {/* {hinh} */}
+
                 </div>
             </div>
         )

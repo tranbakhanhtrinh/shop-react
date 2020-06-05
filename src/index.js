@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+import { watchHome } from './store/sagas/';
 
 import homeReducer from './store/reducers/home'
 
@@ -14,8 +16,12 @@ import homeReducer from './store/reducers/home'
 //     home: homeReducer
 // })
 
+const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(homeReducer, applyMiddleware(thunk));
+const store = createStore(homeReducer, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(watchHome);
+
 const app =
     (
         <Provider store={store}>
