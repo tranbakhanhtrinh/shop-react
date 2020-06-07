@@ -1,23 +1,22 @@
 .CMS {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    margin-top: 56px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-top: 56px;
 
-    .LeftMenuBar {
-        background: #2c2c34;
-        width: 250px;
-        color: #e1e1e1;
-        position: sticky;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
+  .LeftMenuBar {
+    background: #2c2c34;
+    width: 250px;
+    color: #e1e1e1;
+    position: sticky;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
 
-    .Body {
-        background-color: green;
-        height: 300px;
-        width: 100%;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
+  .Body {
+    background-color: #fff;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
 }

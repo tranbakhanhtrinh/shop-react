@@ -1,1 +1,7 @@
-export { fetchHomeStart, fetchHomeSuccess, fetchHomeFail, fetchHome } from './home';
+export {
+    fetchNamePageStart,
+    fetchNamePageSuccess,
+    fetchNamePageFail,
+    initFetchNamePage
+}
+    from './cms';

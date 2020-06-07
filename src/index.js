@@ -8,9 +8,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { watchHome } from './store/sagas/';
+import { watchNamePage } from './store/sagas/';
 
-import homeReducer from './store/reducers/home'
+import cmsReducer from './store/reducers/cms'
 
 // const reducer = combineReducers({
 //     home: homeReducer
@@ -18,9 +18,9 @@ import homeReducer from './store/reducers/home'
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(homeReducer, applyMiddleware(sagaMiddleware));
+const store = createStore(cmsReducer, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(watchHome);
+sagaMiddleware.run(watchNamePage);
 
 const app =
     (

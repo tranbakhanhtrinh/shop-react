@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+// import axios from 'axios';
 
-import * as actionType from '../../../store/actions/home';
+import * as actions from '../../../store/actions/';
+
+import Spinner from '../../../components/UI/Spinner/Spinner';
 
 import classes from './CMS.module.scss';
 
 class CMS extends Component {
-
     componentDidMount() {
-        this.props.onFetchHome();
-        axios.get('https://shop-react-f7aae.firebaseio.com/db.json').then(res => console.log(res))
+        this.props.onFetchNamePage();
     }
-
     render() {
-        const { gv, hd, ha } = {
-            gv: { ...this.props.giangvien },
-            hd: { ...this.props.header },
-            ha: { ...this.props.hinhanh }
+        const pageName = [];
+        for (let key in this.props.namePage) {
+            pageName.push(key);
         }
-        const img = Object.values({ ...ha.img });
-        // console.log(img)
-
+        let nPage = pageName.map((a, i) => <p key={i}>{a}</p>)
+        let xoay = null;
+        if (this.props.loading) {
+            xoay = <Spinner />
+        }
         return (
             <div className={classes.CMS}>
+                {xoay}
                 <div className={classes.LeftMenuBar}>
-
+                    {nPage}
                 </div>
                 <div className={classes.Body}>
 
@@ -37,9 +38,7 @@ class CMS extends Component {
 
 const mapStateToProps = state => {
     return {
-        giangvien: state.giangvien,
-        header: state.header,
-        hinhanh: state.hinhanh,
+        namePage: state.namePage,
         loading: state.loading
     }
 
@@ -47,7 +46,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchHome: () => dispatch(actionType.fetchHome())
+        onFetchNamePage: () => dispatch(actions.initFetchNamePage())
     }
 }
 
