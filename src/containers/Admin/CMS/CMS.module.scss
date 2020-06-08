@@ -1,22 +1,37 @@
+body {
+    background-color: #2f353a;
+}
+
 .CMS {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  margin-top: 56px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-top: 56px;
 
-  .LeftMenuBar {
-    background: #2c2c34;
-    width: 250px;
-    color: #e1e1e1;
-    position: sticky;
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
+    .LeftMenuBar {
+        background: #3a4149;
+        width: 250px;
+        color: #e1e1e1;
+        position: absolute;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        top: 0;
+        left: 0;
+        height: calc(100vh - 56px);
 
-  .Body {
-    background-color: #fff;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
+        &__Content {
+            position: sticky;
+        }
+    }
+
+    .Body {
+        background-color: rgba(0, 0, 0, .2);
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        margin: 1rem;
+        color: #fff;
+        padding: 1rem;
+        margin-left: calc(250px + 1rem);
+    }
 }

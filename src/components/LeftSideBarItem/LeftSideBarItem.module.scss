@@ -1,0 +1,24 @@
+.LeftSideBarItem {
+    width: 100%;
+    text-align: left;
+    background-color: transparent;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        background-color: #20a8d8;
+        color: #fff;
+    }
+
+    a {
+        text-decoration: none;
+        color: #fff;
+        width: 100%;
+
+        &:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+    }
+}
