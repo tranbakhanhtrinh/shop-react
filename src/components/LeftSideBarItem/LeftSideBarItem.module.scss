@@ -1,24 +1,28 @@
 .LeftSideBarItem {
+  width: 100%;
+  text-align: left;
+  background-color: transparent;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #20a8d8;
+    color: #fff;
+  }
+  .active {
+    background-color: #20a8d8;
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
     width: 100%;
-    text-align: left;
-    background-color: transparent;
-    text-transform: capitalize;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-
+    transition: all 0.2s ease-in-out;
     &:hover {
-        background-color: #20a8d8;
-        color: #fff;
+      text-decoration: none;
+      color: #fff;
+      background-color: #20a8d8;
     }
-
-    a {
-        text-decoration: none;
-        color: #fff;
-        width: 100%;
-
-        &:hover {
-            text-decoration: none;
-            color: #fff;
-        }
-    }
+  }
 }

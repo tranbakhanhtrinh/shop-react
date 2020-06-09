@@ -7,6 +7,10 @@ import Aux from '../../../../hoc/Aux/Aux';
 import * as actions from '../../../../store/actions';
 
 class MainBody extends Component {
+    constructor(props) {
+        super(props);
+        this.onChangedTextareaHandler = this.onChangedTextareaHandler.bind(this);
+    }
 
     componentDidMount() {
         this.props.onFetchNamePage();
@@ -16,23 +20,25 @@ class MainBody extends Component {
         return s.charAt(0).toUpperCase() + s.slice(1)
     }
 
+    onChangedTextareaHandler = (event, identifier, val) => {
+
+    }
+
     render() {
         const pageName = _.cloneDeep({ ...this.props.namePage });
         const pageNameArr = [];
-        const dataArr = []
         for (let key in pageName) {
-            pageNameArr.push(this.capitalize(key));
-            for (let data in pageName[key]) {
-                dataArr.push(data);
-            }
+            pageNameArr.push(this.capitalize(key))
         }
-        console.log(dataArr);
 
-        const routerBody = pageNameArr.map((a, ia) => (
-            <div key={a} >
-                <Route path={this.props.match.path + `/${a}`} render={() => <RightMainBody title={a} elePage={ia} />} />
-            </div>
-        ));
+        const routerBody = pageNameArr.map((a, ia) => {
+            return pageName[a.toLowerCase()].map((b, ib) => {
+                return (
+                    <Route key={ia + ib} path={this.props.match.path + `/${a}`} render={() => <RightMainBody elePage={b.title} value={b.des} name={b.id} changed={this.onChangedTextareaHandler()} />} />
+                )
+            })
+
+        });
         return (
             <Aux>
                 {routerBody}

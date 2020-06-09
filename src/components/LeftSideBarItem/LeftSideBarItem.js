@@ -5,7 +5,7 @@ import classes from './LeftSideBarItem.module.scss';
 const leftSideBarItem = (props) => {
     return (
         <div className={classes.LeftSideBarItem}>
-            <NavigationItem link={props.link} >{props.children}</NavigationItem>
+            <NavigationItem link={props.link} activeClass={classes.active}>{props.children}</NavigationItem>
         </div>
 
     );
