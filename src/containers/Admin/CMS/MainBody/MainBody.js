@@ -1,14 +1,16 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import RightMainBody from '../../../../components/RightMainBody/RightMainBody';
 import Aux from '../../../../hoc/Aux/Aux';
-import Button from '../../../../components/UI/Button/Button';
-
-import classes from './MainBody.module.scss';
 
 class MainBody extends PureComponent {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {}
+    // }
+
     state = {}
 
     capitalize = (s) => {
@@ -17,7 +19,7 @@ class MainBody extends PureComponent {
     }
 
     onChangedTextareaHandler = (event, iden) => {
-        const updatedForm = _.cloneDeep({ ...this.props.namePage });
+        const updatedForm = { ...this.props.namePage };
         for (let key in updatedForm) {
             updatedForm[key].forEach(ab => {
                 if (ab.id === iden) {
@@ -28,12 +30,8 @@ class MainBody extends PureComponent {
         this.setState({ namePage: updatedForm });
     }
 
-    onEditedTextarea = (event) => {
-        event.preventDefault();
-
-    }
-
     render() {
+        // console.log(this.state.namePage)
         const pageName = _.cloneDeep({ ...this.props.namePage });
         const pageNameArr = [];
         for (let key in pageName) {
@@ -43,7 +41,9 @@ class MainBody extends PureComponent {
         const routerBody = pageNameArr.map((a, ia) => {
             return pageName[a.toLowerCase()].map((b, ib) => {
                 return (
-                    <Route key={ia + ib} path={this.props.match.path + `/${a}`} render={() => <RightMainBody elePage={b.title} value={b.des} name={b.id} changed={(e) => this.onChangedTextareaHandler(e, b.id)} />} />
+                    <Switch>
+                        <Route key={ia + ib} path={this.props.match.path + `/${a}`} render={() => <RightMainBody elePage={b.title} value={b.des} name={b.id} changed={(e) => this.onChangedTextareaHandler(e, b.id)} />} />
+                    </Switch>
                 )
             })
 
@@ -51,10 +51,7 @@ class MainBody extends PureComponent {
 
         return (
             <Aux>
-                <form>
-                    {routerBody}
-                    <Button btnType="Submit" clicked={this.onEditedTextarea}>Edit</Button>
-                </form>
+                {routerBody}
             </Aux>
         )
     }
