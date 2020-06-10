@@ -44,6 +44,9 @@ class Login extends Component {
         updatedForm[inputIdentifier] = updatedFormEle;
         this.setState({ loginForm: updatedForm });
     }
+    onLoginHandler = () => {
+
+    }
     render() {
         const formElementsArray = [];
         for (let key in this.state.loginForm) {
@@ -64,7 +67,7 @@ class Login extends Component {
 
         return (
             <div className={classes.Login}>
-                <form className={classes.Form}>
+                <form className={classes.Form} onSubmit={this.onLoginHandler}>
                     <h3>Login</h3>
                     {form}
                     <div className={classes.FormButton}>

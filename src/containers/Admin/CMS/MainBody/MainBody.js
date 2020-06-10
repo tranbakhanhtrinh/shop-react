@@ -6,10 +6,6 @@ import RightMainBody from '../../../../components/RightMainBody/RightMainBody';
 import Aux from '../../../../hoc/Aux/Aux';
 
 class MainBody extends PureComponent {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {}
-    // }
 
     state = {}
 
@@ -41,9 +37,11 @@ class MainBody extends PureComponent {
         const routerBody = pageNameArr.map((a, ia) => {
             return pageName[a.toLowerCase()].map((b, ib) => {
                 return (
-                    <Switch>
-                        <Route key={ia + ib} path={this.props.match.path + `/${a}`} render={() => <RightMainBody elePage={b.title} value={b.des} name={b.id} changed={(e) => this.onChangedTextareaHandler(e, b.id)} />} />
-                    </Switch>
+                    <Aux key={ia + ib}>
+                        <Switch>
+                            <Route path={this.props.match.path + `/${a}`} render={() => <RightMainBody elePage={b.title} value={b.des} name={b.id} changed={(e) => this.onChangedTextareaHandler(e, b.id)} />} />
+                        </Switch>
+                    </Aux>
                 )
             })
 
