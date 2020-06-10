@@ -1,26 +1,35 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import RightMainBody from '../../../../components/RightMainBody/RightMainBody';
 import Aux from '../../../../hoc/Aux/Aux';
-import * as actions from '../../../../store/actions';
+import Button from '../../../../components/UI/Button/Button';
 
-class MainBody extends Component {
-    constructor(props) {
-        super(props);
-        this.onChangedTextareaHandler = this.onChangedTextareaHandler.bind(this);
-    }
+import classes from './MainBody.module.scss';
 
-    componentDidMount() {
-        this.props.onFetchNamePage();
-    }
+class MainBody extends PureComponent {
+    state = {}
+
     capitalize = (s) => {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1)
     }
 
-    onChangedTextareaHandler = (event, identifier, val) => {
+    onChangedTextareaHandler = (event, iden) => {
+        const updatedForm = _.cloneDeep({ ...this.props.namePage });
+        for (let key in updatedForm) {
+            updatedForm[key].forEach(ab => {
+                if (ab.id === iden) {
+                    ab.des = event.target.value
+                }
+            })
+        }
+        this.setState({ namePage: updatedForm });
+    }
+
+    onEditedTextarea = (event) => {
+        event.preventDefault();
 
     }
 
@@ -34,14 +43,18 @@ class MainBody extends Component {
         const routerBody = pageNameArr.map((a, ia) => {
             return pageName[a.toLowerCase()].map((b, ib) => {
                 return (
-                    <Route key={ia + ib} path={this.props.match.path + `/${a}`} render={() => <RightMainBody elePage={b.title} value={b.des} name={b.id} changed={this.onChangedTextareaHandler()} />} />
+                    <Route key={ia + ib} path={this.props.match.path + `/${a}`} render={() => <RightMainBody elePage={b.title} value={b.des} name={b.id} changed={(e) => this.onChangedTextareaHandler(e, b.id)} />} />
                 )
             })
 
         });
+
         return (
             <Aux>
-                {routerBody}
+                <form>
+                    {routerBody}
+                    <Button btnType="Submit" clicked={this.onEditedTextarea}>Edit</Button>
+                </form>
             </Aux>
         )
     }
@@ -54,10 +67,4 @@ const mapStateToProps = state => {
 
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onFetchNamePage: () => dispatch(actions.initFetchNamePage())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MainBody));
+export default connect(mapStateToProps)(withRouter(MainBody));
